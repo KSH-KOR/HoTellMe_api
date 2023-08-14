@@ -42,7 +42,7 @@ class DB_mysql():
         self.cur.execute(sql)
         return list(self.cur.fetchall())
 
-    def insert_hotel_row(self, hotel_data):
+    def insert_hotel_row(self, hotel_data, search_id):
         availability = 1 if hotel_data['availability']['available'] else 0
         distance_from_messaging = hotel_data['destinationInfo']['distanceFromMessaging']
         id = hotel_data['id']
@@ -58,8 +58,8 @@ class DB_mysql():
         escaped_name = name.replace("'", "''")
         # Insert data into the table
         insert_query = f"""
-INSERT INTO HotelData (Availability, DistanceFromMessaging, Name, Id, Latitude, Longitude, PriceAmount, PriceUnitSymbol, PropertyImageUrl, ReviewScore, ReviewCount)
-VALUES ({availability}, '{distance_from_messaging}', '{escaped_name}', '{id}', {latitude}, {longitude}, {price_amount}, '{price_unit_symbol}', '{property_image_url}', {review_score}, {review_count})
+INSERT INTO HotelData (Availability, DistanceFromMessaging, Name, Id, Latitude, Longitude, PriceAmount, PriceUnitSymbol, PropertyImageUrl, ReviewScore, ReviewCount, SearchId)
+VALUES ({availability}, '{distance_from_messaging}', '{escaped_name}', '{id}', {latitude}, {longitude}, {price_amount}, '{price_unit_symbol}', '{property_image_url}', {review_score}, {review_count}, {search_id})
         """
         
         self.send_insert_query(insert_query)

@@ -1,6 +1,7 @@
 import sys 
 import os
 import requests
+import uuid
 from fastapi import HTTPException
 
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
@@ -55,7 +56,10 @@ def request_hotel_list(context):
 
         response = requests.post(hotel_list_url, json=payload, headers=headers)
         data = response.json()['data']['propertySearch']['properties']
-        DB_mysql().insert_hotel_row(hotel_data = data)
+        db_instance = DB_mysql()
+        search_id = uuid.uuid4
+        for row in data:
+            db_instance.insert_hotel_row(hotel_data = data, search_id=search_id)
         return True
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
