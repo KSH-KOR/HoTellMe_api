@@ -10,7 +10,7 @@ class DBInfo():
 
     @staticmethod
     def get_connection_string():
-        return f"DRIVER={{{DBInfo.driver}}};SERVER={DBInfo.server};DATABASE={DBInfo.db_name};UID={DBInfo.user};PWD={DBInfo.passwd}"
+        return f"DRIVER={DBInfo.driver};SERVER={DBInfo.server};DATABASE={DBInfo.db_name};UID={DBInfo.user};PWD={DBInfo.passwd}"
 
 class DB_mysql():
     session = None
