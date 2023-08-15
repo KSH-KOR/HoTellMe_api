@@ -18,7 +18,7 @@ url = "http://101.101.219.108:8001/request/hotel-list"
 
 # Create an instance of RequestHotelList with example data
 request_data = RequestHotelList(
-    regionId="example_region",
+    regionId="8077",
     checkInDate="01/08/2023",
     checkOutDate="10/08/2023",
     roomAdultCount=2,
