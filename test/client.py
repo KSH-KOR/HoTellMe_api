@@ -14,7 +14,7 @@ class RequestHotelList(BaseModel):
     priceMin: int
 
 # Define your API endpoint URL
-url = "https://ksh-dev.online/request/hotel-list"
+url = "http://localhost:8001/request/hotel-list"
 
 # Create an instance of RequestHotelList with example data
 request_data = RequestHotelList(

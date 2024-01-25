@@ -6,7 +6,7 @@ from fastapi import HTTPException
 
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
-from db.db_init import DB_mysql
+# from db.db_init import DB_mysql
 
 hotel_list_url = "https://hotels4.p.rapidapi.com/properties/v2/list"
 region_list_url = "https://hotels4.p.rapidapi.com/locations/v3/search"
@@ -56,10 +56,12 @@ def request_hotel_list(context):
 
         response = requests.post(hotel_list_url, json=payload, headers=headers)
         data = response.json()['data']['propertySearch']['properties']
-        db_instance = DB_mysql()
+        print(data)
+        # db_instance = DB_mysql()
         search_id = uuid.uuid4
-        for row in data:
-            db_instance.insert_hotel_row(hotel_data = data, search_id=search_id)
+        
+        # for row in data:
+        #     db_instance.insert_hotel_row(hotel_data = row, search_id=search_id)
         return True
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
